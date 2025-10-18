@@ -7,10 +7,11 @@ const ModuleSchema = new Schema(
     ec: { type: Number, required: true },
     level: { type: String, required: true },
     theme: String,
-    description: String,
+    // Allow description to be either a string (legacy) or an object with language keys
+    description: Schema.Types.Mixed,
     keywords: [String],
   },
-  { timestamps: true }
+  { timestamps: true}
 );
 
 export const ModuleModel = model('Module', ModuleSchema);

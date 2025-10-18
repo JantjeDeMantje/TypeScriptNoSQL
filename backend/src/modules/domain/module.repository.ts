@@ -12,4 +12,5 @@ export interface ModuleRepository {
   findByCode(code: string): Promise<Module | null>;
   create(module: Module): Promise<Module>;
   update(code: string, patch: Partial<ReturnType<Module['toJSON']>>): Promise<Module | null>;
+  delete(code: string): Promise<boolean>;
 }

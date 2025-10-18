@@ -6,6 +6,52 @@ html {
   line-height: 1.5;
   tab-size: 4;
   scroll-behavior: smooth;
+  --bg: #f8f9fa;
+  --fg: #222;
+  --card-bg: #fff;
+  --accent: #c6002a;
+  --border: #e5e5e5;
+  --dropdown-bg: #fff;
+  --dropdown-fg: #333;
+  --dropdown-hover: #f8f9fa;
+  --header-bg: #fff;
+  --header-fg: #333;
+  --separator: #c6002a;
+  --button-bg: #c6002a;
+  --button-fg: #fff;
+  --input-bg: #fff;
+  --input-fg: #222;
+  --input-border: #ddd;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background: var(--bg);
+  color: var(--fg);
+  transition: background 0.3s, color 0.3s;
+}
+html.dark {
+  --bg: #181a1b;
+  --fg: #eaeaea;
+  --card-bg: #232527;
+  --accent: #c6002a; /* Keep red in dark mode */
+  --border: #333;
+  --dropdown-bg: #232527;
+  --dropdown-fg: #eaeaea;
+  --dropdown-hover: #222;
+  --header-bg: #232527;
+  --header-fg: #fff;
+  --separator: #c6002a;
+  --button-bg: #c6002a;
+  --button-fg: #fff;
+  --input-bg: #232527;
+  --input-fg: #eaeaea;
+  --input-border: #444;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  background: var(--bg);
+  color: var(--fg);
+}
+body {
+  background: var(--bg);
+  color: var(--fg);
+  transition: background 0.3s, color 0.3s;
 }
 body {
   font-family: inherit;

@@ -1,11 +1,12 @@
 import { Injectable, NotFoundException, Inject } from '@nestjs/common';
 import { ModuleRepository, ModuleFilter } from '../domain/module.repository';
 import { Module, ModuleProps } from '../domain/module.entity';
+import { MODULE_REPO } from '../tokens';
 
 @Injectable()
 export class ModuleService {
   constructor(
-    @Inject('ModuleRepository')
+    @Inject(MODULE_REPO)
     private readonly repo: ModuleRepository
   ) {}
 
@@ -29,5 +30,11 @@ export class ModuleService {
     const m = await this.get(code);
     if (!m) throw new NotFoundException('Module not found');
     return m;
+  }
+
+  async delete(code: string) {
+    const deleted = await this.repo.delete(code);
+    if (!deleted) throw new NotFoundException('Module not found');
+    return deleted;
   }
 }

@@ -1,4 +1,6 @@
 import './global.css';
+import { I18nProvider } from '../lib/i18n';
+import { ThemeProvider } from '../lib/theme';
 
 export const metadata = {
   title: 'Welcome to frontend',
@@ -12,7 +14,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&display=swap" rel="stylesheet" />
+      </head>
+      <body>
+        <I18nProvider>
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
+        </I18nProvider>
+      </body>
     </html>
   );
 }
