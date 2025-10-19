@@ -4,6 +4,8 @@ const { join } = require('path');
 module.exports = {
   output: {
     path: join(__dirname, '../dist/backend'),
+    filename: 'main.js',
+    clean: true,
     ...(process.env.NODE_ENV !== 'production' && {
       devtoolModuleFilenameTemplate: '[absolute-resource-path]',
     }),

@@ -3,8 +3,8 @@
     "dev:all": "npx nx run-many --target=serve --projects=frontend,backend --parallel",
     "dev:frontend": "npx nx serve frontend",
     "dev:backend": "npx nx serve backend",
-    "start": "npx nx serve backend --prod",
-    "build": "npx nx build frontend",
+    "start": "node backend/dist/main.js",
+    "build": "nx run backend:build:production",
     "build:azure": "npx nx build frontend --prod"
   },
   "devDependencies": {
