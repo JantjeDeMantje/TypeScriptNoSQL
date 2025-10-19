@@ -3,6 +3,7 @@
     "dev:all": "npx nx run-many --target=serve --projects=frontend,backend --parallel",
     "dev:frontend": "npx nx serve frontend",
     "dev:backend": "npx nx serve backend",
+    "prestart": "node -e \"console.log('CWD:', process.cwd()); const fs=require('fs'); console.log('Exists dist/backend/main.js:', fs.existsSync('dist/backend/main.js')); console.log('PORT:', process.env.PORT);\"",
     "start": "node dist/backend/main.js",
     "build": "nx run backend:build:production",
     "build:azure": "npx nx build frontend --prod"

@@ -22,7 +22,9 @@ async function bootstrap() {
   if (!mongo) {
     throw new Error('MONGO_URI not set');
   }
-  await mongoose.connect(mongo);
+  Logger.log('Connecting to MongoDB...');
+  await mongoose.connect(mongo, { serverSelectionTimeoutMS: 10000 });
+  Logger.log('Connected to MongoDB');
 
   const port = process.env.PORT || 3000;
   await app.listen(port);
