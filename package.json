@@ -5,6 +5,7 @@
     "dev:backend": "npx nx serve backend",
     "build": "npx nx build frontend",
     "build:azure": "npx nx build frontend --prod"
+    
   },
   "devDependencies": {
     "@eslint/compat": "^1.1.1",
