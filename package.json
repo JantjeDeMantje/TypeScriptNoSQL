@@ -3,9 +3,9 @@
     "dev:all": "npx nx run-many --target=serve --projects=frontend,backend --parallel",
     "dev:frontend": "npx nx serve frontend",
     "dev:backend": "npx nx serve backend",
+    "start": "npx nx serve backend --prod",
     "build": "npx nx build frontend",
     "build:azure": "npx nx build frontend --prod"
-    
   },
   "devDependencies": {
     "@eslint/compat": "^1.1.1",
