@@ -46,6 +46,7 @@ export default function ModuleCard({ module: m, onClick, isFavorite, onToggleFav
           {onToggleFavorite && (
             <button
               onClick={(e) => {
+                e.preventDefault();
                 e.stopPropagation();
                 onToggleFavorite(e);
               }}

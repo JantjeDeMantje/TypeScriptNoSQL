@@ -108,6 +108,22 @@ export default function Header() {
           >
             {t('favorites')}
           </button>
+          <button
+            style={{
+              padding: '0.5rem 1rem',
+              border: 'none',
+              background: 'transparent',
+              cursor: 'pointer',
+              fontSize: '1rem',
+              fontWeight: 500,
+              color: 'var(--header-fg)',
+              fontFamily: "'Lato', sans-serif",
+              transition: 'color 0.3s',
+            }}
+            onClick={() => (window.location.href = '/about')}
+          >
+            {lang === 'en' ? 'About' : 'Over'}
+          </button>
 
           {/* Account dropdown */}
           <div ref={dropdownRef} style={{ position: 'relative' }}>
