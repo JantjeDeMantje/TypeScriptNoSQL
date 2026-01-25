@@ -1,9 +1,10 @@
 "use client";
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { useRouter, useParams } from 'next/navigation';
 import { getModule, updateModule, deleteModule, getLocalized, setLocalized, ModuleItem } from '../../../lib/api';
 import { getUser } from '../../../lib/auth';
-import Header from '../../../components/Header';
+const Header = dynamic(() => import('../../../components/Header'), { ssr: false });
 import { useI18n } from '../../../lib/i18n';
 
 export default function ModuleDetailPage() {
@@ -78,7 +79,10 @@ export default function ModuleDetailPage() {
         margin: '0 auto', 
         padding: '2rem',
         fontFamily: "'Lato', sans-serif",
-        textAlign: 'center'
+        textAlign: 'center',
+        color: 'var(--fg)',
+        backgroundColor: 'var(--bg)',
+        minHeight: 'calc(100vh - 100px)'
       }}>
         {t('loading')}
       </div>
@@ -93,14 +97,16 @@ export default function ModuleDetailPage() {
         margin: '0 auto', 
         padding: '2rem',
         fontFamily: "'Lato', sans-serif",
-        backgroundColor: '#f8f9fa',
+        backgroundColor: 'var(--bg)',
+        color: 'var(--fg)',
         minHeight: 'calc(100vh - 100px)'
       }}>
         <div style={{ 
-          backgroundColor: '#fff',
+          backgroundColor: 'var(--card-bg)',
           borderRadius: '8px',
           padding: '2rem',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+          boxShadow: 'var(--shadow)',
+          color: 'var(--fg)'
         }}>
           {/* Back Button */}
           <button 
@@ -108,11 +114,12 @@ export default function ModuleDetailPage() {
             style={{
               marginBottom: '1.5rem',
               padding: '0.5rem 1rem',
-              backgroundColor: '#f0f0f0',
-              border: '1px solid #ddd',
+              backgroundColor: 'var(--dropdown-hover)',
+              border: '1px solid var(--border)',
               borderRadius: '4px',
               cursor: 'pointer',
-              fontSize: '0.9rem'
+              fontSize: '0.9rem',
+              color: 'var(--fg)'
             }}
           >
             ← {t('back_to_modules')}
@@ -122,7 +129,7 @@ export default function ModuleDetailPage() {
             margin: '0 0 1.5rem',
             fontSize: '2rem',
             fontWeight: 600,
-            color: '#333'
+            color: 'var(--fg)'
           }}>{t('module_details')}</h1>
 
           {error && (
@@ -140,29 +147,29 @@ export default function ModuleDetailPage() {
 
           {!edit ? (
             <div style={{ lineHeight: '1.8' }}>
-              <div style={{ marginBottom: '1rem', padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
-                <strong style={{ color: '#666', fontSize: '0.9rem' }}>{t('code')}:</strong>
+              <div style={{ marginBottom: '1rem', padding: '1rem', backgroundColor: 'var(--bg)', borderRadius: '4px' }}>
+                <strong style={{ color: 'var(--fg)', fontSize: '0.9rem', opacity: 0.8 }}>{t('code')}:</strong>
                 <div style={{ fontSize: '1.1rem', fontWeight: 500, marginTop: '0.25rem' }}>{module.code}</div>
               </div>
-              <div style={{ marginBottom: '1rem', padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
-                <strong style={{ color: '#666', fontSize: '0.9rem' }}>{t('name')}:</strong>
+              <div style={{ marginBottom: '1rem', padding: '1rem', backgroundColor: 'var(--bg)', borderRadius: '4px' }}>
+                <strong style={{ color: 'var(--fg)', fontSize: '0.9rem', opacity: 0.8 }}>{t('name')}:</strong>
                 <div style={{ fontSize: '1.1rem', fontWeight: 500, marginTop: '0.25rem' }}>{module.name}</div>
               </div>
-              <div style={{ marginBottom: '1rem', padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
-                <strong style={{ color: '#666', fontSize: '0.9rem' }}>{t('description')}:</strong>
+              <div style={{ marginBottom: '1rem', padding: '1rem', backgroundColor: 'var(--card-bg)', borderRadius: '4px' }}>
+                <strong style={{ color: 'var(--fg)', fontSize: '0.9rem', opacity: 0.8 }}>{t('description')}:</strong>
                 <div style={{ marginTop: '0.25rem' }}>{getLocalized(module.description, lang) || ''}</div>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
-                <div style={{ padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
-                  <strong style={{ color: '#666', fontSize: '0.9rem' }}>{t('ec')}:</strong>
+                <div style={{ padding: '1rem', backgroundColor: 'var(--card-bg)', borderRadius: '4px' }}>
+                  <strong style={{ color: 'var(--fg)', fontSize: '0.9rem', opacity: 0.8 }}>{t('ec')}:</strong>
                   <div style={{ fontSize: '1.1rem', fontWeight: 500, marginTop: '0.25rem' }}>{module.ec}</div>
                 </div>
-                <div style={{ padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
-                  <strong style={{ color: '#666', fontSize: '0.9rem' }}>{t('level')}:</strong>
+                <div style={{ padding: '1rem', backgroundColor: 'var(--card-bg)', borderRadius: '4px' }}>
+                  <strong style={{ color: 'var(--fg)', fontSize: '0.9rem', opacity: 0.8 }}>{t('level')}:</strong>
                   <div style={{ fontSize: '1.1rem', fontWeight: 500, marginTop: '0.25rem' }}>{module.level}</div>
                 </div>
-                <div style={{ padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
-                  <strong style={{ color: '#666', fontSize: '0.9rem' }}>{t('theme')}:</strong>
+                <div style={{ padding: '1rem', backgroundColor: 'var(--card-bg)', borderRadius: '4px' }}>
+                  <strong style={{ color: 'var(--fg)', fontSize: '0.9rem', opacity: 0.8 }}>{t('theme')}:</strong>
                   <div style={{ fontSize: '1.1rem', fontWeight: 500, marginTop: '0.25rem' }}>{module.theme || 'N/A'}</div>
                 </div>
               </div>
@@ -171,8 +178,8 @@ export default function ModuleDetailPage() {
                   onClick={handleEdit}
                   style={{
                     padding: '0.75rem 1.5rem',
-                    backgroundColor: '#007bff',
-                    color: '#fff',
+                    backgroundColor: 'var(--button-bg)',
+                    color: 'var(--button-fg)',
                     border: 'none',
                     borderRadius: '4px',
                     cursor: 'pointer',
@@ -186,8 +193,8 @@ export default function ModuleDetailPage() {
                   onClick={handleDelete}
                   style={{
                     padding: '0.75rem 1.5rem',
-                    backgroundColor: '#dc3545',
-                    color: '#fff',
+                    backgroundColor: 'var(--accent)',
+                    color: 'var(--button-fg)',
                     border: 'none',
                     borderRadius: '4px',
                     cursor: 'pointer',
@@ -213,11 +220,13 @@ export default function ModuleDetailPage() {
                       width: '100%',
                       padding: '0.75rem',
                       marginTop: '0.25rem',
-                      border: '1px solid #ddd',
+                      border: '1px solid var(--input-border)',
                       borderRadius: '4px',
                       fontSize: '1rem',
-                      backgroundColor: '#f0f0f0',
-                      cursor: 'not-allowed'
+                      backgroundColor: 'var(--bg)',
+                      color: 'var(--fg)',
+                      cursor: 'not-allowed',
+                      opacity: 0.7
                     }}
                   />
                 </label>
@@ -233,9 +242,11 @@ export default function ModuleDetailPage() {
                       width: '100%',
                       padding: '0.75rem',
                       marginTop: '0.25rem',
-                      border: '1px solid #ddd',
+                      border: '1px solid var(--input-border)',
                       borderRadius: '4px',
-                      fontSize: '1rem'
+                      fontSize: '1rem',
+                      backgroundColor: 'var(--input-bg)',
+                      color: 'var(--input-fg)',
                     }}
                   />
                 </label>
@@ -255,10 +266,12 @@ export default function ModuleDetailPage() {
                       width: '100%',
                       padding: '0.75rem',
                       marginTop: '0.25rem',
-                      border: '1px solid #ddd',
+                      border: '1px solid var(--input-border)',
                       borderRadius: '4px',
                       fontSize: '1rem',
-                      fontFamily: "'Lato', sans-serif"
+                      fontFamily: "'Lato', sans-serif",
+                      backgroundColor: 'var(--input-bg)',
+                      color: 'var(--input-fg)',
                     }}
                   />
                 </label>
@@ -276,9 +289,11 @@ export default function ModuleDetailPage() {
                         width: '100%',
                         padding: '0.75rem',
                         marginTop: '0.25rem',
-                        border: '1px solid #ddd',
+                        border: '1px solid var(--input-border)',
                         borderRadius: '4px',
-                        fontSize: '1rem'
+                        fontSize: '1rem',
+                        backgroundColor: 'var(--input-bg)',
+                        color: 'var(--input-fg)',
                       }}
                     />
                   </label>
@@ -294,9 +309,11 @@ export default function ModuleDetailPage() {
                         width: '100%',
                         padding: '0.75rem',
                         marginTop: '0.25rem',
-                        border: '1px solid #ddd',
+                        border: '1px solid var(--input-border)',
                         borderRadius: '4px',
-                        fontSize: '1rem'
+                        fontSize: '1rem',
+                        backgroundColor: 'var(--input-bg)',
+                        color: 'var(--input-fg)',
                       }}
                     />
                   </label>
@@ -312,9 +329,11 @@ export default function ModuleDetailPage() {
                         width: '100%',
                         padding: '0.75rem',
                         marginTop: '0.25rem',
-                        border: '1px solid #ddd',
+                        border: '1px solid var(--input-border)',
                         borderRadius: '4px',
-                        fontSize: '1rem'
+                        fontSize: '1rem',
+                        backgroundColor: 'var(--input-bg)',
+                        color: 'var(--input-fg)',
                       }}
                     />
                   </label>
@@ -326,8 +345,8 @@ export default function ModuleDetailPage() {
                   disabled={loading}
                   style={{
                     padding: '0.75rem 1.5rem',
-                    backgroundColor: loading ? '#ccc' : '#28a745',
-                    color: '#fff',
+                    backgroundColor: loading ? 'var(--input-border)' : 'var(--button-bg)',
+                    color: 'var(--button-fg)',
                     border: 'none',
                     borderRadius: '4px',
                     cursor: loading ? 'not-allowed' : 'pointer',
@@ -342,8 +361,8 @@ export default function ModuleDetailPage() {
                   onClick={() => setEdit(false)}
                   style={{
                     padding: '0.75rem 1.5rem',
-                    backgroundColor: '#6c757d',
-                    color: '#fff',
+                    backgroundColor: 'var(--border)',
+                    color: 'var(--fg)',
                     border: 'none',
                     borderRadius: '4px',
                     cursor: 'pointer',

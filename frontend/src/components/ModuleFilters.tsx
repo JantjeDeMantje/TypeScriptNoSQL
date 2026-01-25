@@ -29,7 +29,8 @@ export default function ModuleFilters({
       flexWrap: 'wrap', 
       marginBottom: '2rem',
       padding: '1.5rem',
-      backgroundColor: '#f8f9fa',
+      backgroundColor: 'var(--bg)',
+      color: 'var(--fg)',
       borderRadius: '6px'
     }}>
       <input
@@ -39,10 +40,12 @@ export default function ModuleFilters({
         style={{
           flex: '1 1 300px',
           padding: '0.75rem 1rem',
-          border: '1px solid #ddd',
+          border: '1px solid var(--input-border)',
           borderRadius: '4px',
           fontSize: '1rem',
-          fontFamily: "'Lato', sans-serif"
+          fontFamily: "'Lato', sans-serif",
+          backgroundColor: 'var(--input-bg)',
+          color: 'var(--input-fg)',
         }}
       />
       <select
@@ -51,11 +54,12 @@ export default function ModuleFilters({
         onChange={(e) => onFilterChange('ec', e.target.value)}
         style={{
           padding: '0.75rem 1rem',
-          border: '1px solid #ddd',
+          border: '1px solid var(--input-border)',
           borderRadius: '4px',
           fontSize: '1rem',
           fontFamily: "'Lato', sans-serif",
-          backgroundColor: '#fff',
+          backgroundColor: 'var(--input-bg)',
+          color: 'var(--input-fg)',
           cursor: 'pointer',
           minWidth: '120px'
         }}
@@ -70,11 +74,12 @@ export default function ModuleFilters({
         onChange={(e) => onFilterChange('level', e.target.value)}
         style={{
           padding: '0.75rem 1rem',
-          border: '1px solid #ddd',
+          border: '1px solid var(--input-border)',
           borderRadius: '4px',
           fontSize: '1rem',
           fontFamily: "'Lato', sans-serif",
-          backgroundColor: '#fff',
+          backgroundColor: 'var(--input-bg)',
+          color: 'var(--input-fg)',
           cursor: 'pointer',
           minWidth: '140px'
         }}
@@ -92,8 +97,8 @@ export default function ModuleFilters({
           borderRadius: '4px',
           fontSize: '1rem',
           fontFamily: "'Lato', sans-serif",
-          backgroundColor: '#c6002a',
-          color: '#fff',
+          backgroundColor: 'var(--button-bg)',
+          color: 'var(--button-fg)',
           cursor: loading ? 'not-allowed' : 'pointer',
           fontWeight: 500,
           opacity: loading ? 0.6 : 1
@@ -105,12 +110,12 @@ export default function ModuleFilters({
         onClick={onCreateNew}
         style={{
           padding: '0.75rem 1.5rem',
-          border: '1px solid #c6002a',
+          border: '1px solid var(--accent)',
           borderRadius: '4px',
           fontSize: '1rem',
           fontFamily: "'Lato', sans-serif",
-          backgroundColor: '#fff',
-          color: '#c6002a',
+          backgroundColor: 'var(--card-bg)',
+          color: 'var(--accent)',
           cursor: 'pointer',
           fontWeight: 500,
           minWidth: '160px'

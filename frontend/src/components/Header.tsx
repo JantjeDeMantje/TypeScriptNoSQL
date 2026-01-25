@@ -61,7 +61,7 @@ export default function Header() {
               src="/school-logo.png"
               alt="School Logo"
               style={{ height: '40px', cursor: 'pointer' }}
-              onClick={() => (window.location.href = '/modules')}
+              onClick={() => router.push('/modules')}
             />
           )}
         </div>
@@ -88,7 +88,7 @@ export default function Header() {
               fontFamily: "'Lato', sans-serif",
               transition: 'color 0.3s',
             }}
-            onClick={() => (window.location.href = '/modules')}
+            onClick={() => router.push('/modules')}
           >
             {t('modules')}
           </button>
@@ -104,7 +104,7 @@ export default function Header() {
               fontFamily: "'Lato', sans-serif",
               transition: 'color 0.3s',
             }}
-            onClick={() => (window.location.href = '/favorites')}
+            onClick={() => router.push('/favorites')}
           >
             {t('favorites')}
           </button>
@@ -120,7 +120,7 @@ export default function Header() {
               fontFamily: "'Lato', sans-serif",
               transition: 'color 0.3s',
             }}
-            onClick={() => (window.location.href = '/about')}
+            onClick={() => router.push('/about')}
           >
             {lang === 'en' ? 'About' : 'Over'}
           </button>

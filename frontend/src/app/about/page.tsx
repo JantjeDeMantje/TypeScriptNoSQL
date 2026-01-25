@@ -226,11 +226,17 @@ export default function AboutPage() {
                     <td style={{ padding: '0.75rem' }}>{lang === 'en' ? 'As a user, I want to be able to set the website to dark mode.' : 'Als gebruiker wil ik de website op dark mode kunnen zetten.'}</td>
                     <td style={{ padding: '0.75rem' }}>{lang === 'en' ? 'There is a button that changes the website between dark and light mode.' : 'Er is een knop die de website tussen dark mode en light mode verandert.'}</td>
                   </tr>
-                  <tr>
+                  <tr style={{ borderBottom: '1px solid var(--border)' }}>
                     <td style={{ padding: '0.75rem' }}>US3.2</td>
                     <td style={{ padding: '0.75rem' }}>{lang === 'en' ? 'Multiple Languages' : 'Meerdere talen'}</td>
                     <td style={{ padding: '0.75rem' }}>{lang === 'en' ? 'As a user, I want to be able to switch the website language.' : 'Als gebruiker wil ik de taal van de website kunnen wisselen.'}</td>
                     <td style={{ padding: '0.75rem' }}>{lang === 'en' ? 'There is a button that changes the website between Dutch and English.' : 'Er is een knop die de website tussen nederlands en engels verandert.'}</td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: '0.75rem' }}>US3.3</td>
+                    <td style={{ padding: '0.75rem' }}>Lighthouse</td>
+                    <td style={{ padding: '0.75rem' }}>{lang === 'en' ? 'As a developer, I want the website to be optimized for performance, accessibility, best practices, and SEO.' : 'Als ontwikkelaar wil ik dat de website geoptimaliseerd is voor prestaties, toegankelijkheid, best practices en SEO.'}</td>
+                    <td style={{ padding: '0.75rem' }}>{lang === 'en' ? 'The website needs to get at least a score of 95 on all criteria.' : 'De website moet minimaal een score van 95 halen op alle criteria.'}</td>
                   </tr>
                 </tbody>
               </table>

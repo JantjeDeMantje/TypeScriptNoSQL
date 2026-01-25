@@ -25,12 +25,13 @@ export default function ModuleCreateForm({ form, onFormChange, onSubmit }: Modul
         display: 'grid', 
         gap: '1rem', 
         padding: '1.5rem',
-        backgroundColor: '#f8f9fa',
+        backgroundColor: 'var(--bg)',
+        color: 'var(--fg)',
         borderRadius: '6px',
-        border: '2px solid #c6002a'
+        border: '2px solid var(--accent)'
       }}
     >
-      <h2 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem', fontWeight: 600, color: '#333' }}>
+      <h2 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem', fontWeight: 600, color: 'var(--fg)' }}>
         {t('create_module')}
       </h2>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
@@ -41,10 +42,12 @@ export default function ModuleCreateForm({ form, onFormChange, onSubmit }: Modul
           onChange={(e) => onFormChange({ ...form, code: e.target.value })}
           style={{
             padding: '0.75rem',
-            border: '1px solid #ddd',
+            border: '1px solid var(--input-border)',
             borderRadius: '4px',
             fontSize: '1rem',
-            fontFamily: "'Lato', sans-serif"
+            fontFamily: "'Lato', sans-serif",
+            backgroundColor: 'var(--input-bg)',
+            color: 'var(--input-fg)',
           }}
         />
         <input 
@@ -54,10 +57,12 @@ export default function ModuleCreateForm({ form, onFormChange, onSubmit }: Modul
           onChange={(e) => onFormChange({ ...form, name: e.target.value })}
           style={{
             padding: '0.75rem',
-            border: '1px solid #ddd',
+            border: '1px solid var(--input-border)',
             borderRadius: '4px',
             fontSize: '1rem',
-            fontFamily: "'Lato', sans-serif"
+            fontFamily: "'Lato', sans-serif",
+            backgroundColor: 'var(--input-bg)',
+            color: 'var(--input-fg)',
           }}
         />
       </div>
@@ -70,10 +75,12 @@ export default function ModuleCreateForm({ form, onFormChange, onSubmit }: Modul
           onChange={(e) => onFormChange({ ...form, ec: Number(e.target.value) })}
           style={{
             padding: '0.75rem',
-            border: '1px solid #ddd',
+            border: '1px solid var(--input-border)',
             borderRadius: '4px',
             fontSize: '1rem',
-            fontFamily: "'Lato', sans-serif"
+            fontFamily: "'Lato', sans-serif",
+            backgroundColor: 'var(--input-bg)',
+            color: 'var(--input-fg)',
           }}
         />
         <select 
@@ -81,11 +88,12 @@ export default function ModuleCreateForm({ form, onFormChange, onSubmit }: Modul
           onChange={(e) => onFormChange({ ...form, level: e.target.value })}
           style={{
             padding: '0.75rem',
-            border: '1px solid #ddd',
+            border: '1px solid var(--input-border)',
             borderRadius: '4px',
             fontSize: '1rem',
             fontFamily: "'Lato', sans-serif",
-            backgroundColor: '#fff'
+            backgroundColor: 'var(--input-bg)',
+            color: 'var(--input-fg)',
           }}
         >
           <option value="NLQF-5">NLQF-5</option>
@@ -97,10 +105,12 @@ export default function ModuleCreateForm({ form, onFormChange, onSubmit }: Modul
           onChange={(e) => onFormChange({ ...form, theme: e.target.value })}
           style={{
             padding: '0.75rem',
-            border: '1px solid #ddd',
+            border: '1px solid var(--input-border)',
             borderRadius: '4px',
             fontSize: '1rem',
-            fontFamily: "'Lato', sans-serif"
+            fontFamily: "'Lato', sans-serif",
+            backgroundColor: 'var(--input-bg)',
+            color: 'var(--input-fg)',
           }}
         />
       </div>
@@ -111,11 +121,13 @@ export default function ModuleCreateForm({ form, onFormChange, onSubmit }: Modul
         rows={3}
         style={{
           padding: '0.75rem',
-          border: '1px solid #ddd',
+          border: '1px solid var(--input-border)',
           borderRadius: '4px',
           fontSize: '1rem',
           fontFamily: "'Lato', sans-serif",
-          resize: 'vertical'
+          resize: 'vertical',
+          backgroundColor: 'var(--input-bg)',
+          color: 'var(--input-fg)',
         }}
       />
       <button 
@@ -126,8 +138,8 @@ export default function ModuleCreateForm({ form, onFormChange, onSubmit }: Modul
           borderRadius: '4px',
           fontSize: '1rem',
           fontFamily: "'Lato', sans-serif",
-          backgroundColor: '#c6002a',
-          color: '#fff',
+          backgroundColor: 'var(--button-bg)',
+          color: 'var(--button-fg)',
           cursor: 'pointer',
           fontWeight: 500,
           justifySelf: 'start'

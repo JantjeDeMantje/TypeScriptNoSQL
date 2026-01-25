@@ -19,6 +19,7 @@ html {
   --separator: #c6002a;
   --button-bg: #c6002a;
   --button-fg: #fff;
+  --accent-fg: #fff;
   --input-bg: #fff;
   --input-fg: #222;
   --input-border: #ddd;
@@ -31,7 +32,8 @@ html.dark {
   --bg: #181a1b;
   --fg: #eaeaea;
   --card-bg: #232527;
-  --accent: #ff6b6b; /* Lighter red for accessibility in dark mode */
+  --accent: #ff4444; /* Brighter red */
+  --accent-fg: #000; /* Black text on bright red for contrast */
   --border: #555;
   --dropdown-bg: #232527;
   --dropdown-fg: #eaeaea;

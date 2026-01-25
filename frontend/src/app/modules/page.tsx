@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { fetchModules, createModule, ModuleItem, setLocalized } from '../../lib/api';
 import { isAuthenticated, getUser } from '../../lib/auth';
 import { getFavorites, addFavorite, removeFavorite } from '../../lib/favorites';
-import Header from '../../components/Header';
+const Header = dynamic(() => import('../../components/Header'), { ssr: false });
 import { useI18n } from '../../lib/i18n';
 import ModuleCard from '../../components/ModuleCard';
 import ModuleFilters from '../../components/ModuleFilters';
@@ -158,11 +160,11 @@ export default function ModulesPage() {
           {error && (
             <div style={{ 
               padding: '1rem', 
-              backgroundColor: '#fee', 
-              color: '#c00', 
+              backgroundColor: 'rgba(255, 0, 0, 0.1)', 
+              color: 'var(--accent)', 
               borderRadius: '4px',
               marginBottom: '1rem',
-              border: '1px solid #fcc'
+              border: '1px solid var(--accent)'
             }}>
               {t('error')}: {error}
             </div>
@@ -172,14 +174,14 @@ export default function ModulesPage() {
             <div style={{ 
               textAlign: 'center', 
               padding: '3rem 1rem',
-              color: '#666',
-              backgroundColor: '#f8f9fa',
+              color: 'var(--fg)',
+              backgroundColor: 'var(--bg)',
               borderRadius: '6px'
             }}>
               <p style={{ fontSize: '1.1rem', margin: '0 0 0.5rem' }}>
                 {t('no_modules')}
               </p>
-              <p style={{ fontSize: '0.9rem', margin: 0, color: '#999' }}>
+              <p style={{ fontSize: '0.9rem', margin: 0, color: 'var(--fg)', opacity: 0.7 }}>
                 {t('create_hint')}
               </p>
             </div>
@@ -197,13 +199,15 @@ export default function ModulesPage() {
           }}>
             {modules.map((m) => (
                 <li key={m.code}>
-                  <a href={`/modules/${m.code}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  {/* Remove Link to fix nesting interaction error */}
+                  <div style={{ textDecoration: 'none', color: 'inherit' }}>
                     <ModuleCard 
                       module={m}
+                      onClick={() => router.push(`/modules/${m.code}`)} 
                       isFavorite={favorites.includes(m.code)}
                       onToggleFavorite={() => handleToggleFavorite(m.code)}
                     />
-                  </a>
+                  </div>
                 </li>
             ))}
           </ul>

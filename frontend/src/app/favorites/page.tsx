@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { fetchModules, ModuleItem } from '../../lib/api';
 import { isAuthenticated, getUser } from '../../lib/auth';
 import { getFavorites, removeFavorite } from '../../lib/favorites';
-import Header from '../../components/Header';
+const Header = dynamic(() => import('../../components/Header'), { ssr: false });
 import { useI18n } from '../../lib/i18n';
 import ModuleCard from '../../components/ModuleCard';
 
@@ -66,11 +67,11 @@ export default function FavoritesPage() {
         margin: '0 auto', 
         padding: '2rem 2rem 4rem',
         fontFamily: "'Lato', sans-serif",
-        backgroundColor: '#f8f9fa',
+        backgroundColor: 'var(--bg)',
         minHeight: 'calc(100vh - 100px)'
       }}>
         <div style={{ 
-          backgroundColor: '#fff',
+          backgroundColor: 'var(--card-bg)',
           borderRadius: '8px',
           padding: '2rem',
           boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
@@ -79,14 +80,14 @@ export default function FavoritesPage() {
             margin: '0 0 1.5rem',
             fontSize: '2rem',
             fontWeight: 600,
-            color: '#333'
+            color: 'var(--fg)'
           }}>{t('my_favorites')}</h1>
 
           {loading && (
             <div style={{ 
               textAlign: 'center', 
               padding: '3rem 1rem',
-              color: '#666'
+              color: 'var(--fg)'
             }}>
               <p>{t('loading')}</p>
             </div>
@@ -96,14 +97,14 @@ export default function FavoritesPage() {
             <div style={{ 
               textAlign: 'center', 
               padding: '3rem 1rem',
-              color: '#666',
-              backgroundColor: '#f8f9fa',
+              color: 'var(--fg)',
+              backgroundColor: 'var(--bg)',
               borderRadius: '6px'
             }}>
               <p style={{ fontSize: '1.1rem', margin: '0 0 0.5rem' }}>
                 {t('no_favorites')}
               </p>
-              <p style={{ fontSize: '0.9rem', margin: '0 0 1.5rem', color: '#999' }}>
+              <p style={{ fontSize: '0.9rem', margin: '0 0 1.5rem', color: 'var(--fg)', opacity: 0.7 }}>
                 {t('how_to_favorite')}
               </p>
               <button
@@ -114,8 +115,8 @@ export default function FavoritesPage() {
                   borderRadius: '4px',
                   fontSize: '1rem',
                   fontFamily: "'Lato', sans-serif",
-                  backgroundColor: '#c6002a',
-                  color: '#fff',
+                  backgroundColor: 'var(--button-bg)',
+                  color: 'var(--button-fg)',
                   cursor: 'pointer',
                   fontWeight: 500
                 }}

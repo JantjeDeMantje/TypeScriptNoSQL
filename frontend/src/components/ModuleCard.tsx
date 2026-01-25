@@ -74,10 +74,10 @@ export default function ModuleCard({ module: m, onClick, isFavorite, onToggleFav
           <span style={{
             padding: '0.25rem 0.75rem',
             backgroundColor: 'var(--accent)',
-            color: 'var(--button-fg)',
+            color: 'var(--accent-fg)',
             borderRadius: '12px',
             fontSize: '0.85rem',
-            fontWeight: 500,
+            fontWeight: 700,
             transition: 'background 0.3s, color 0.3s',
           }}>
             {m.ec} EC
@@ -86,7 +86,7 @@ export default function ModuleCard({ module: m, onClick, isFavorite, onToggleFav
       </div>
       <div style={{ 
         fontSize: '0.9rem', 
-        color: 'var(--fg)',
+        color: '',
         marginBottom: '0.75rem',
         display: 'flex',
         gap: '1rem',
