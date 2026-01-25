@@ -7,7 +7,7 @@
     "start": "node dist/backend/main.js",
     "build": "nx run backend:build:production",
     "build:frontend": "npx nx build frontend",
-    "start:frontend": "next start dist/frontend"
+    "start:frontend": "next start frontend"
   },
   "devDependencies": {
     "@eslint/compat": "^1.1.1",
