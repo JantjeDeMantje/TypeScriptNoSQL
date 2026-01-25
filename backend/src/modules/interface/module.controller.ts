@@ -1,15 +1,15 @@
 import { Controller, Get, Param, Post, Body, Put, Query } from '@nestjs/common';
 import { Delete } from '@nestjs/common';
 import { ModuleService } from '../application/module.service';
-import { CreateModuleDto, UpdateModuleDto } from './module.dto';
-import { ModuleFilter } from '../domain/module.repository';
+import { CreateModuleDto, UpdateModuleDto, FilterModuleDto } from './module.dto';
+import { ModuleProps } from '../domain/module.entity';
 
 @Controller('modules')
 export class ModuleController {
   constructor(private readonly service: ModuleService) {}
 
   // Helper normalization (legacy string description -> object)
-  private normalizeOut(m: any): any {
+  private normalizeOut(m: ModuleProps): ModuleProps {
     const out = { ...m };
     if (typeof out.description === 'string') {
       out.description = { en: out.description, nl: out.description };
@@ -18,12 +18,8 @@ export class ModuleController {
   }
 
   @Get()
-  async list(@Query() q: ModuleFilter) {
-    const filters: ModuleFilter = {
-      ...q,
-      ec: (q as any)?.ec !== undefined && (q as any).ec !== '' ? Number((q as any).ec) : undefined,
-    };
-    const modules = await this.service.list(filters);
+  async list(@Query() q: FilterModuleDto) {
+    const modules = await this.service.list(q);
     return modules.map((m) => this.normalizeOut(m.toJSON()));
   }
 

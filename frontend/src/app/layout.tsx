@@ -1,6 +1,13 @@
 import './global.css';
 import { I18nProvider } from '../lib/i18n';
 import { ThemeProvider } from '../lib/theme';
+import { Lato } from 'next/font/google';
+
+const lato = Lato({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata = {
   title: 'Welcome to frontend',
@@ -13,12 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="en" className={lato.className}>
       <body>
         <I18nProvider>
           <ThemeProvider>

@@ -26,7 +26,6 @@ export default function ModulesPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showCreate, setShowCreate] = useState(false);
-  const [userEmail, setUserEmail] = useState<string>('');
   const [form, setForm] = useState({
     code: '',
     name: '',
@@ -40,10 +39,7 @@ export default function ModulesPage() {
     if (!isAuthenticated()) {
       router.push('/auth');
     } else {
-      const user = getUser();
-      if (user) {
-        setUserEmail(user.email);
-      }
+
       loadFavorites();
     }
   }, [router]);

@@ -136,7 +136,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     return (key: string) => dict[key] || key;
   }, [lang]);
 
-  const value = useMemo(() => ({ lang, setLang, t }), [lang]);
+  const value = useMemo(() => ({ lang, setLang, t }), [lang, t]);
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }

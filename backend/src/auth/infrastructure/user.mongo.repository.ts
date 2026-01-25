@@ -33,4 +33,9 @@ export class UserMongoRepository implements UserRepository {
       createdAt: doc.createdAt,
     });
   }
+
+  async delete(email: string): Promise<boolean> {
+    const result = await UserModel.deleteOne({ email });
+    return result.deletedCount === 1;
+  }
 }

@@ -9,9 +9,9 @@ interface ModuleCreateFormProps {
     ec: number;
     level: string;
     theme: string;
-  description: any;
+    description: any;
   };
-  onFormChange: (form: any) => void;
+  onFormChange: (form: ModuleCreateFormProps['form']) => void;
   onSubmit: (e: React.FormEvent) => void;
 }
 

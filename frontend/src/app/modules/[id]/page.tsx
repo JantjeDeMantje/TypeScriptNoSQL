@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import { getModule, updateModule, deleteModule, getLocalized, setLocalized } from '../../../lib/api';
+import { getModule, updateModule, deleteModule, getLocalized, setLocalized, ModuleItem } from '../../../lib/api';
 import { getUser } from '../../../lib/auth';
 import Header from '../../../components/Header';
 import { useI18n } from '../../../lib/i18n';
@@ -11,20 +11,15 @@ export default function ModuleDetailPage() {
   const router = useRouter();
   const params = useParams();
   const id = params.id as string;
-  const [module, setModule] = useState<any>(null);
+  const [module, setModule] = useState<ModuleItem | null>(null);
   const [edit, setEdit] = useState(false);
-  const [form, setForm] = useState<any>({});
+  const [form, setForm] = useState<Partial<ModuleItem>>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [userEmail, setUserEmail] = useState<string>('');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const user = getUser();
-    if (user) {
-      setUserEmail(user.email);
-    }
   }, []);
 
   useEffect(() => {
@@ -47,7 +42,7 @@ export default function ModuleDetailPage() {
     setError(null);
     try {
       // Remove _id, code, and timestamp fields from the update payload
-      const { _id, code, createdAt, updatedAt, __v, ...updateData } = form;
+      const { _id, code, createdAt, updatedAt, __v, ...updateData } = form as any;
       // Convert ec to number if it exists
       if (updateData.ec !== undefined) {
         updateData.ec = Number(updateData.ec);

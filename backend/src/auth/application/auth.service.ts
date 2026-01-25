@@ -50,4 +50,8 @@ export class AuthService {
   async validateUser(email: string): Promise<User | null> {
     return this.userRepo.findByEmail(email);
   }
+
+  async deleteUser(email: string) {
+    return this.userRepo.delete(email);
+  }
 }
