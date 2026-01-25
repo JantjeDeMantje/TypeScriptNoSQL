@@ -7,6 +7,7 @@
     "start": "node dist/backend/main.js",
     "test": "npx nx test backend --testFile=src/auth/application/auth.service.spec.ts --testFile=src/modules/application/module.service.spec.ts",
     "test:e2e": "npx nx run-many --target=e2e --all",
+    "test:render": "npm run test && npm run test:e2e",
     "build": "nx run backend:build:production",
     "build:frontend": "npx nx build frontend",
     "start:frontend": "next start dist/frontend"
