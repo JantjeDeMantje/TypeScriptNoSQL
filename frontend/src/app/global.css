@@ -31,8 +31,8 @@ html.dark {
   --bg: #181a1b;
   --fg: #eaeaea;
   --card-bg: #232527;
-  --accent: #c6002a; /* Keep red in dark mode */
-  --border: #333;
+  --accent: #ff6b6b; /* Lighter red for accessibility in dark mode */
+  --border: #555;
   --dropdown-bg: #232527;
   --dropdown-fg: #eaeaea;
   --dropdown-hover: #222;

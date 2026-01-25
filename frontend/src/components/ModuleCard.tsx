@@ -32,7 +32,7 @@ export default function ModuleCard({ module: m, onClick, isFavorite, onToggleFav
       onMouseLeave={() => setHovered(false)}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '0.75rem' }}>
-        <h3 style={{ 
+        <h2 style={{ 
           margin: 0, 
           fontSize: '1.25rem',
           fontWeight: 600,
@@ -41,7 +41,7 @@ export default function ModuleCard({ module: m, onClick, isFavorite, onToggleFav
           transition: 'color 0.3s',
         }}>
           {m.name}
-        </h3>
+        </h2>
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
           {onToggleFavorite && (
             <button
@@ -57,7 +57,8 @@ export default function ModuleCard({ module: m, onClick, isFavorite, onToggleFav
                 fontSize: '1.5rem',
                 padding: '0.25rem',
                 lineHeight: 1,
-                transition: 'transform 0.2s'
+                transition: 'transform 0.2s',
+                color: isFavorite ? 'var(--accent)' : 'var(--fg)'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'scale(1.2)';

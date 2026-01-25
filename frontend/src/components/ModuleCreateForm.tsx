@@ -30,9 +30,9 @@ export default function ModuleCreateForm({ form, onFormChange, onSubmit }: Modul
         border: '2px solid #c6002a'
       }}
     >
-      <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem', fontWeight: 600, color: '#333' }}>
+      <h2 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem', fontWeight: 600, color: '#333' }}>
         {t('create_module')}
-      </h3>
+      </h2>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
         <input 
           required 
