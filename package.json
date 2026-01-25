@@ -9,7 +9,7 @@
     "test:e2e": "npx nx run-many --target=e2e --all",
     "build": "nx run backend:build:production",
     "build:frontend": "npx nx build frontend",
-    "start:frontend": "next start frontend"
+    "start:frontend": "next start dist/frontend"
   },
   "devDependencies": {
     "@eslint/compat": "^1.1.1",
