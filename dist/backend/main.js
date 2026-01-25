@@ -1173,7 +1173,9 @@ async function bootstrap() {
     if (!mongo) {
         throw new Error('MONGO_URI not set');
     }
-    await mongoose.connect(mongo);
+    common_2.Logger.log('Connecting to MongoDB...');
+    await mongoose.connect(mongo, { serverSelectionTimeoutMS: 10000 });
+    common_2.Logger.log('Connected to MongoDB');
     const port = process.env.PORT || 3000;
     await app.listen(port, '0.0.0.0');
     common_2.Logger.log(`🚀 Application is running on: http://localhost:${port}/api`);
