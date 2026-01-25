@@ -5,6 +5,8 @@
     "dev:backend": "npx nx serve backend",
     "prestart": "node -e \"console.log('CWD:', process.cwd()); const fs=require('fs'); console.log('Exists dist/backend/main.js:', fs.existsSync('dist/backend/main.js')); console.log('PORT:', process.env.PORT);\"",
     "start": "node dist/backend/main.js",
+    "test": "npx nx test backend --testFile=src/auth/application/auth.service.spec.ts --testFile=src/modules/application/module.service.spec.ts",
+    "test:e2e": "npx nx run-many --target=e2e --all",
     "build": "nx run backend:build:production",
     "build:frontend": "npx nx build frontend",
     "start:frontend": "next start frontend"

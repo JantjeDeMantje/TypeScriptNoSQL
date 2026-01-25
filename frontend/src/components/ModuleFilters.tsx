@@ -46,6 +46,7 @@ export default function ModuleFilters({
         }}
       />
       <select
+        aria-label={t('ec')}
         value={filters.ec || ''}
         onChange={(e) => onFilterChange('ec', e.target.value)}
         style={{
@@ -64,6 +65,7 @@ export default function ModuleFilters({
         <option value="30">30 EC</option>
       </select>
       <select
+        aria-label={t('level')}
         value={filters.level || ''}
         onChange={(e) => onFilterChange('level', e.target.value)}
         style={{

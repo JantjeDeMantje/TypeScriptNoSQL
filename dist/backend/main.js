@@ -40,18 +40,16 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AppModule = void 0;
 const tslib_1 = __webpack_require__(1);
 const common_1 = __webpack_require__(2);
-const app_controller_1 = __webpack_require__(7);
-const app_service_1 = __webpack_require__(8);
-const modules_module_1 = __webpack_require__(9);
-const auth_module_1 = __webpack_require__(19);
+const modules_module_1 = __webpack_require__(7);
+const auth_module_1 = __webpack_require__(18);
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = tslib_1.__decorate([
     (0, common_1.Module)({
         imports: [modules_module_1.ModulesModule, auth_module_1.AuthModule],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        controllers: [],
+        providers: [],
     })
 ], AppModule);
 
@@ -61,66 +59,14 @@ exports.AppModule = AppModule = tslib_1.__decorate([
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
-var _a;
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.AppController = void 0;
-const tslib_1 = __webpack_require__(1);
-const common_1 = __webpack_require__(2);
-const app_service_1 = __webpack_require__(8);
-let AppController = class AppController {
-    constructor(appService) {
-        this.appService = appService;
-    }
-    getData() {
-        return this.appService.getData();
-    }
-};
-exports.AppController = AppController;
-tslib_1.__decorate([
-    (0, common_1.Get)(),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", []),
-    tslib_1.__metadata("design:returntype", void 0)
-], AppController.prototype, "getData", null);
-exports.AppController = AppController = tslib_1.__decorate([
-    (0, common_1.Controller)(),
-    tslib_1.__metadata("design:paramtypes", [typeof (_a = typeof app_service_1.AppService !== "undefined" && app_service_1.AppService) === "function" ? _a : Object])
-], AppController);
-
-
-/***/ }),
-/* 8 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.AppService = void 0;
-const tslib_1 = __webpack_require__(1);
-const common_1 = __webpack_require__(2);
-let AppService = class AppService {
-    getData() {
-        return { message: 'Hello API' };
-    }
-};
-exports.AppService = AppService;
-exports.AppService = AppService = tslib_1.__decorate([
-    (0, common_1.Injectable)()
-], AppService);
-
-
-/***/ }),
-/* 9 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ModulesModule = void 0;
 const tslib_1 = __webpack_require__(1);
 const common_1 = __webpack_require__(2);
-const module_service_1 = __webpack_require__(10);
-const module_controller_1 = __webpack_require__(14);
-const module_mongo_repository_1 = __webpack_require__(17);
-const tokens_1 = __webpack_require__(13);
+const module_service_1 = __webpack_require__(8);
+const module_controller_1 = __webpack_require__(12);
+const module_mongo_repository_1 = __webpack_require__(16);
+const tokens_1 = __webpack_require__(11);
 let ModulesModule = class ModulesModule {
 };
 exports.ModulesModule = ModulesModule;
@@ -138,7 +84,7 @@ exports.ModulesModule = ModulesModule = tslib_1.__decorate([
 
 
 /***/ }),
-/* 10 */
+/* 8 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -147,9 +93,9 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ModuleService = void 0;
 const tslib_1 = __webpack_require__(1);
 const common_1 = __webpack_require__(2);
-const module_repository_1 = __webpack_require__(11);
-const module_entity_1 = __webpack_require__(12);
-const tokens_1 = __webpack_require__(13);
+const module_repository_1 = __webpack_require__(9);
+const module_entity_1 = __webpack_require__(10);
+const tokens_1 = __webpack_require__(11);
 let ModuleService = class ModuleService {
     constructor(repo) {
         this.repo = repo;
@@ -188,7 +134,7 @@ exports.ModuleService = ModuleService = tslib_1.__decorate([
 
 
 /***/ }),
-/* 11 */
+/* 9 */
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -196,7 +142,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 
 /***/ }),
-/* 12 */
+/* 10 */
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -217,7 +163,7 @@ exports.Module = Module;
 
 
 /***/ }),
-/* 13 */
+/* 11 */
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -227,7 +173,7 @@ exports.MODULE_REPO = 'ModuleRepository';
 
 
 /***/ }),
-/* 14 */
+/* 12 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -237,9 +183,8 @@ exports.ModuleController = void 0;
 const tslib_1 = __webpack_require__(1);
 const common_1 = __webpack_require__(2);
 const common_2 = __webpack_require__(2);
-const module_service_1 = __webpack_require__(10);
-const module_dto_1 = __webpack_require__(15);
-const module_repository_1 = __webpack_require__(11);
+const module_service_1 = __webpack_require__(8);
+const module_dto_1 = __webpack_require__(13);
 let ModuleController = class ModuleController {
     constructor(service) {
         this.service = service;
@@ -253,11 +198,7 @@ let ModuleController = class ModuleController {
         return out;
     }
     async list(q) {
-        const filters = {
-            ...q,
-            ec: q?.ec !== undefined && q.ec !== '' ? Number(q.ec) : undefined,
-        };
-        const modules = await this.service.list(filters);
+        const modules = await this.service.list(q);
         return modules.map((m) => this.normalizeOut(m.toJSON()));
     }
     async get(code) {
@@ -281,7 +222,7 @@ tslib_1.__decorate([
     (0, common_1.Get)(),
     tslib_1.__param(0, (0, common_1.Query)()),
     tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [typeof (_b = typeof module_repository_1.ModuleFilter !== "undefined" && module_repository_1.ModuleFilter) === "function" ? _b : Object]),
+    tslib_1.__metadata("design:paramtypes", [typeof (_b = typeof module_dto_1.FilterModuleDto !== "undefined" && module_dto_1.FilterModuleDto) === "function" ? _b : Object]),
     tslib_1.__metadata("design:returntype", Promise)
 ], ModuleController.prototype, "list", null);
 tslib_1.__decorate([
@@ -320,14 +261,39 @@ exports.ModuleController = ModuleController = tslib_1.__decorate([
 
 
 /***/ }),
-/* 15 */
+/* 13 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.UpdateModuleDto = exports.CreateModuleDto = void 0;
+exports.UpdateModuleDto = exports.CreateModuleDto = exports.FilterModuleDto = void 0;
 const tslib_1 = __webpack_require__(1);
-const class_validator_1 = __webpack_require__(16);
+const class_validator_1 = __webpack_require__(14);
+const class_transformer_1 = __webpack_require__(15);
+class FilterModuleDto {
+}
+exports.FilterModuleDto = FilterModuleDto;
+tslib_1.__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Transform)(({ value }) => Number(value)),
+    tslib_1.__metadata("design:type", Number)
+], FilterModuleDto.prototype, "ec", void 0);
+tslib_1.__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    tslib_1.__metadata("design:type", String)
+], FilterModuleDto.prototype, "level", void 0);
+tslib_1.__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    tslib_1.__metadata("design:type", String)
+], FilterModuleDto.prototype, "theme", void 0);
+tslib_1.__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    tslib_1.__metadata("design:type", String)
+], FilterModuleDto.prototype, "q", void 0);
 class CreateModuleDto {
 }
 exports.CreateModuleDto = CreateModuleDto;
@@ -396,20 +362,26 @@ tslib_1.__decorate([
 
 
 /***/ }),
-/* 16 */
+/* 14 */
 /***/ ((module) => {
 
 module.exports = require("class-validator");
 
 /***/ }),
-/* 17 */
+/* 15 */
+/***/ ((module) => {
+
+module.exports = require("class-transformer");
+
+/***/ }),
+/* 16 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ModuleMongoRepository = void 0;
-const module_entity_1 = __webpack_require__(12);
-const module_schema_1 = __webpack_require__(18);
+const module_entity_1 = __webpack_require__(10);
+const module_schema_1 = __webpack_require__(17);
 class ModuleMongoRepository {
     async findAll(filter = {}) {
         const query = {};
@@ -457,7 +429,8 @@ class ModuleMongoRepository {
         // If description is a string, keep as-is (legacy). If object, ensure only en/nl keys and strings.
         if (out && out.description !== undefined && out.description !== null) {
             if (typeof out.description === 'object' && !Array.isArray(out.description)) {
-                const en = typeof out.description.en === 'string' ? out.description.en : undefined;
+                const desc = out.description;
+                const en = typeof desc.en === 'string' ? desc.en : undefined;
                 const nl = typeof out.description.nl === 'string' ? out.description.nl : undefined;
                 out.description = { ...(en ? { en } : {}), ...(nl ? { nl } : {}) };
                 // If both missing (bad input), drop description
@@ -475,7 +448,7 @@ exports.ModuleMongoRepository = ModuleMongoRepository;
 
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -496,7 +469,7 @@ exports.ModuleModel = (0, mongoose_1.model)('Module', ModuleSchema);
 
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -504,16 +477,16 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AuthModule = void 0;
 const tslib_1 = __webpack_require__(1);
 const common_1 = __webpack_require__(2);
-const jwt_1 = __webpack_require__(20);
-const passport_1 = __webpack_require__(21);
-const auth_controller_1 = __webpack_require__(22);
+const jwt_1 = __webpack_require__(19);
+const passport_1 = __webpack_require__(20);
+const auth_controller_1 = __webpack_require__(21);
 const favorite_controller_1 = __webpack_require__(29);
-const auth_service_1 = __webpack_require__(23);
-const favorite_service_1 = __webpack_require__(31);
+const auth_service_1 = __webpack_require__(22);
+const favorite_service_1 = __webpack_require__(30);
 const jwt_strategy_1 = __webpack_require__(34);
 const user_mongo_repository_1 = __webpack_require__(36);
 const favorite_mongo_repository_1 = __webpack_require__(38);
-const tokens_1 = __webpack_require__(27);
+const tokens_1 = __webpack_require__(26);
 let AuthModule = class AuthModule {
 };
 exports.AuthModule = AuthModule;
@@ -546,19 +519,19 @@ exports.AuthModule = AuthModule = tslib_1.__decorate([
 
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ ((module) => {
 
 module.exports = require("@nestjs/jwt");
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ ((module) => {
 
 module.exports = require("@nestjs/passport");
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -567,8 +540,9 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AuthController = void 0;
 const tslib_1 = __webpack_require__(1);
 const common_1 = __webpack_require__(2);
-const auth_service_1 = __webpack_require__(23);
-const auth_dto_1 = __webpack_require__(28);
+const auth_service_1 = __webpack_require__(22);
+const auth_dto_1 = __webpack_require__(27);
+const jwt_auth_guard_1 = __webpack_require__(28);
 let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
@@ -578,6 +552,11 @@ let AuthController = class AuthController {
     }
     async login(dto) {
         return this.authService.login(dto.email, dto.password);
+    }
+    async deleteSelf(req) {
+        const email = req.user.email;
+        await this.authService.deleteUser(email);
+        return { success: true };
     }
 };
 exports.AuthController = AuthController;
@@ -595,6 +574,14 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [typeof (_c = typeof auth_dto_1.LoginDto !== "undefined" && auth_dto_1.LoginDto) === "function" ? _c : Object]),
     tslib_1.__metadata("design:returntype", Promise)
 ], AuthController.prototype, "login", null);
+tslib_1.__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Delete)('me'),
+    tslib_1.__param(0, (0, common_1.Request)()),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [Object]),
+    tslib_1.__metadata("design:returntype", Promise)
+], AuthController.prototype, "deleteSelf", null);
 exports.AuthController = AuthController = tslib_1.__decorate([
     (0, common_1.Controller)('auth'),
     tslib_1.__metadata("design:paramtypes", [typeof (_a = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" ? _a : Object])
@@ -602,7 +589,7 @@ exports.AuthController = AuthController = tslib_1.__decorate([
 
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
@@ -611,11 +598,11 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AuthService = void 0;
 const tslib_1 = __webpack_require__(1);
 const common_1 = __webpack_require__(2);
-const jwt_1 = __webpack_require__(20);
-const bcrypt = tslib_1.__importStar(__webpack_require__(24));
-const user_repository_1 = __webpack_require__(25);
-const user_entity_1 = __webpack_require__(26);
-const tokens_1 = __webpack_require__(27);
+const jwt_1 = __webpack_require__(19);
+const bcrypt = tslib_1.__importStar(__webpack_require__(23));
+const user_repository_1 = __webpack_require__(24);
+const user_entity_1 = __webpack_require__(25);
+const tokens_1 = __webpack_require__(26);
 let AuthService = class AuthService {
     constructor(userRepo, jwtService) {
         this.userRepo = userRepo;
@@ -653,6 +640,9 @@ let AuthService = class AuthService {
     async validateUser(email) {
         return this.userRepo.findByEmail(email);
     }
+    async deleteUser(email) {
+        return this.userRepo.delete(email);
+    }
 };
 exports.AuthService = AuthService;
 exports.AuthService = AuthService = tslib_1.__decorate([
@@ -663,13 +653,13 @@ exports.AuthService = AuthService = tslib_1.__decorate([
 
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ ((module) => {
 
 module.exports = require("bcrypt");
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -677,7 +667,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -718,7 +708,7 @@ exports.User = User;
 
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -729,14 +719,14 @@ exports.FAVORITE_REPO = Symbol('FAVORITE_REPO');
 
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.LoginDto = exports.RegisterDto = void 0;
 const tslib_1 = __webpack_require__(1);
-const class_validator_1 = __webpack_require__(16);
+const class_validator_1 = __webpack_require__(14);
 class RegisterDto {
 }
 exports.RegisterDto = RegisterDto;
@@ -774,17 +764,36 @@ tslib_1.__decorate([
 
 
 /***/ }),
+/* 28 */
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.JwtAuthGuard = void 0;
+const tslib_1 = __webpack_require__(1);
+const common_1 = __webpack_require__(2);
+const passport_1 = __webpack_require__(20);
+let JwtAuthGuard = class JwtAuthGuard extends (0, passport_1.AuthGuard)('jwt') {
+};
+exports.JwtAuthGuard = JwtAuthGuard;
+exports.JwtAuthGuard = JwtAuthGuard = tslib_1.__decorate([
+    (0, common_1.Injectable)()
+], JwtAuthGuard);
+
+
+/***/ }),
 /* 29 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
-var _a;
+var _a, _b, _c, _d;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.FavoriteController = void 0;
 const tslib_1 = __webpack_require__(1);
 const common_1 = __webpack_require__(2);
-const jwt_auth_guard_1 = __webpack_require__(30);
-const favorite_service_1 = __webpack_require__(31);
+const jwt_auth_guard_1 = __webpack_require__(28);
+const favorite_service_1 = __webpack_require__(30);
+const authenticated_request_interface_1 = __webpack_require__(33);
 let FavoriteController = class FavoriteController {
     constructor(favoriteService) {
         this.favoriteService = favoriteService;
@@ -809,7 +818,7 @@ tslib_1.__decorate([
     (0, common_1.Get)(),
     tslib_1.__param(0, (0, common_1.Request)()),
     tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object]),
+    tslib_1.__metadata("design:paramtypes", [typeof (_b = typeof authenticated_request_interface_1.AuthenticatedRequest !== "undefined" && authenticated_request_interface_1.AuthenticatedRequest) === "function" ? _b : Object]),
     tslib_1.__metadata("design:returntype", Promise)
 ], FavoriteController.prototype, "getUserFavorites", null);
 tslib_1.__decorate([
@@ -817,7 +826,7 @@ tslib_1.__decorate([
     tslib_1.__param(0, (0, common_1.Request)()),
     tslib_1.__param(1, (0, common_1.Param)('moduleCode')),
     tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
+    tslib_1.__metadata("design:paramtypes", [typeof (_c = typeof authenticated_request_interface_1.AuthenticatedRequest !== "undefined" && authenticated_request_interface_1.AuthenticatedRequest) === "function" ? _c : Object, String]),
     tslib_1.__metadata("design:returntype", Promise)
 ], FavoriteController.prototype, "addFavorite", null);
 tslib_1.__decorate([
@@ -825,7 +834,7 @@ tslib_1.__decorate([
     tslib_1.__param(0, (0, common_1.Request)()),
     tslib_1.__param(1, (0, common_1.Param)('moduleCode')),
     tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [Object, String]),
+    tslib_1.__metadata("design:paramtypes", [typeof (_d = typeof authenticated_request_interface_1.AuthenticatedRequest !== "undefined" && authenticated_request_interface_1.AuthenticatedRequest) === "function" ? _d : Object, String]),
     tslib_1.__metadata("design:returntype", Promise)
 ], FavoriteController.prototype, "removeFavorite", null);
 exports.FavoriteController = FavoriteController = tslib_1.__decorate([
@@ -840,32 +849,14 @@ exports.FavoriteController = FavoriteController = tslib_1.__decorate([
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.JwtAuthGuard = void 0;
-const tslib_1 = __webpack_require__(1);
-const common_1 = __webpack_require__(2);
-const passport_1 = __webpack_require__(21);
-let JwtAuthGuard = class JwtAuthGuard extends (0, passport_1.AuthGuard)('jwt') {
-};
-exports.JwtAuthGuard = JwtAuthGuard;
-exports.JwtAuthGuard = JwtAuthGuard = tslib_1.__decorate([
-    (0, common_1.Injectable)()
-], JwtAuthGuard);
-
-
-/***/ }),
-/* 31 */
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-
 var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.FavoriteService = void 0;
 const tslib_1 = __webpack_require__(1);
 const common_1 = __webpack_require__(2);
-const favorite_repository_1 = __webpack_require__(32);
-const favorite_entity_1 = __webpack_require__(33);
-const tokens_1 = __webpack_require__(27);
+const favorite_repository_1 = __webpack_require__(31);
+const favorite_entity_1 = __webpack_require__(32);
+const tokens_1 = __webpack_require__(26);
 let FavoriteService = class FavoriteService {
     constructor(favoriteRepo) {
         this.favoriteRepo = favoriteRepo;
@@ -899,7 +890,7 @@ exports.FavoriteService = FavoriteService = tslib_1.__decorate([
 
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -907,7 +898,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -941,6 +932,14 @@ exports.Favorite = Favorite;
 
 
 /***/ }),
+/* 33 */
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+
+
+/***/ }),
 /* 34 */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -950,9 +949,9 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.JwtStrategy = void 0;
 const tslib_1 = __webpack_require__(1);
 const common_1 = __webpack_require__(2);
-const passport_1 = __webpack_require__(21);
+const passport_1 = __webpack_require__(20);
 const passport_jwt_1 = __webpack_require__(35);
-const auth_service_1 = __webpack_require__(23);
+const auth_service_1 = __webpack_require__(22);
 let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(passport_jwt_1.Strategy) {
     constructor(authService) {
         super({
@@ -991,7 +990,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.UserMongoRepository = void 0;
 const tslib_1 = __webpack_require__(1);
 const common_1 = __webpack_require__(2);
-const user_entity_1 = __webpack_require__(26);
+const user_entity_1 = __webpack_require__(25);
 const user_schema_1 = __webpack_require__(37);
 let UserMongoRepository = class UserMongoRepository {
     async findByEmail(email) {
@@ -1021,6 +1020,10 @@ let UserMongoRepository = class UserMongoRepository {
             lastName: doc.lastName,
             createdAt: doc.createdAt,
         });
+    }
+    async delete(email) {
+        const result = await user_schema_1.UserModel.deleteOne({ email });
+        return result.deletedCount === 1;
     }
 };
 exports.UserMongoRepository = UserMongoRepository;
@@ -1055,7 +1058,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.FavoriteMongoRepository = void 0;
 const tslib_1 = __webpack_require__(1);
 const common_1 = __webpack_require__(2);
-const favorite_entity_1 = __webpack_require__(33);
+const favorite_entity_1 = __webpack_require__(32);
 const favorite_schema_1 = __webpack_require__(39);
 let FavoriteMongoRepository = class FavoriteMongoRepository {
     async findByUser(userEmail) {
@@ -1165,7 +1168,7 @@ async function bootstrap() {
         },
     });
     app.setGlobalPrefix('api');
-    app.useGlobalPipes(new common_1.ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }));
+    app.useGlobalPipes(new common_1.ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true }));
     const mongo = process.env.MONGO_URI;
     if (!mongo) {
         throw new Error('MONGO_URI not set');
@@ -1174,7 +1177,7 @@ async function bootstrap() {
     await mongoose.connect(mongo, { serverSelectionTimeoutMS: 10000 });
     common_2.Logger.log('Connected to MongoDB');
     const port = process.env.PORT || 3000;
-    await app.listen(port);
+    await app.listen(port, '0.0.0.0');
     common_2.Logger.log(`🚀 Application is running on: http://localhost:${port}/api`);
 }
 bootstrap();

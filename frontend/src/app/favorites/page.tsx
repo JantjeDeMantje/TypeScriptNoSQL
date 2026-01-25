@@ -15,16 +15,11 @@ export default function FavoritesPage() {
   const [modules, setModules] = useState<ModuleItem[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
-  const [userEmail, setUserEmail] = useState<string>('');
 
   useEffect(() => {
     if (!isAuthenticated()) {
       router.push('/auth');
     } else {
-      const user = getUser();
-      if (user) {
-        setUserEmail(user.email);
-      }
       load();
     }
   }, [router]);
@@ -42,7 +37,7 @@ export default function FavoritesPage() {
       } else {
         setModules([]);
       }
-    } catch (e: any) {
+    } catch (e) {
       console.error('Failed to load favorites:', e);
     } finally {
       setLoading(false);
@@ -54,8 +49,8 @@ export default function FavoritesPage() {
       await removeFavorite(moduleCode);
       setFavorites(favorites.filter(c => c !== moduleCode));
       setModules(modules.filter(m => m.code !== moduleCode));
-    } catch (e: any) {
-      alert(e.message || 'Failed to remove favorite');
+    } catch (e) {
+      alert(e instanceof Error ? e.message : 'Failed to remove favorite');
     }
   }
 

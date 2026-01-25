@@ -7,7 +7,7 @@ import Header from '../../components/Header';
 import { useI18n } from '../../lib/i18n';
 
 export default function AboutPage() {
-  const { t, lang } = useI18n();
+  const { lang } = useI18n();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
 

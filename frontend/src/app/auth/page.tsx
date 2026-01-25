@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -34,8 +34,8 @@ export default function AuthPage() {
       saveToken(response.token);
       saveUser(response.user);
       router.push('/modules');
-    } catch (err: any) {
-      setError(err.message || 'Login failed');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed');
     } finally {
       setLoading(false);
     }
@@ -51,59 +51,71 @@ export default function AuthPage() {
       saveToken(response.token);
       saveUser(response.user);
       router.push('/modules');
-    } catch (err: any) {
-      setError(err.message || 'Registration failed');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Registration failed');
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#f8f9fa',
-      fontFamily: "'Lato', sans-serif",
-      padding: '2rem'
-    }}>
-      <div style={{
-        backgroundColor: '#fff',
-        borderRadius: '8px',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-        maxWidth: '450px',
-        width: '100%',
-        overflow: 'hidden'
-      }}>
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#f8f9fa',
+        fontFamily: "'Lato', sans-serif",
+        padding: '2rem',
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: '#fff',
+          borderRadius: '8px',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+          maxWidth: '450px',
+          width: '100%',
+          overflow: 'hidden',
+        }}
+      >
         {/* Header */}
-        <div style={{
-          backgroundColor: '#c6002a',
-          color: '#fff',
-          padding: '2rem',
-          textAlign: 'center'
-        }}>
-          <h1 style={{
-            margin: '0 0 0.5rem',
-            fontSize: '1.75rem',
-            fontWeight: 600
-          }}>
+        <div
+          style={{
+            backgroundColor: '#c6002a',
+            color: '#fff',
+            padding: '2rem',
+            textAlign: 'center',
+          }}
+        >
+          <h1
+            style={{
+              margin: '0 0 0.5rem',
+              fontSize: '1.75rem',
+              fontWeight: 600,
+            }}
+          >
             Avans KeuzeKompas
           </h1>
-          <p style={{
-            margin: 0,
-            fontSize: '0.95rem',
-            opacity: 0.9
-          }}>
+          <p
+            style={{
+              margin: 0,
+              fontSize: '0.95rem',
+              opacity: 0.9,
+            }}
+          >
             {isLogin ? t('login_subtitle') : t('register_subtitle')}
           </p>
         </div>
 
         {/* Tab Switcher */}
-        <div style={{
-          display: 'flex',
-          borderBottom: '1px solid #e5e5e5'
-        }}>
+        <div
+          style={{
+            display: 'flex',
+            borderBottom: '1px solid #e5e5e5',
+          }}
+        >
           <button
             onClick={() => {
               setIsLogin(true);
@@ -114,13 +126,15 @@ export default function AuthPage() {
               padding: '1rem',
               border: 'none',
               backgroundColor: isLogin ? '#fff' : '#f8f9fa',
-              borderBottom: isLogin ? '3px solid #c6002a' : '3px solid transparent',
+              borderBottom: isLogin
+                ? '3px solid #c6002a'
+                : '3px solid transparent',
               cursor: 'pointer',
               fontFamily: "'Lato', sans-serif",
               fontSize: '1rem',
               fontWeight: isLogin ? 600 : 400,
               color: isLogin ? '#c6002a' : '#666',
-              transition: 'all 0.2s'
+              transition: 'all 0.2s',
             }}
           >
             {t('login_tab')}
@@ -135,13 +149,15 @@ export default function AuthPage() {
               padding: '1rem',
               border: 'none',
               backgroundColor: !isLogin ? '#fff' : '#f8f9fa',
-              borderBottom: !isLogin ? '3px solid #c6002a' : '3px solid transparent',
+              borderBottom: !isLogin
+                ? '3px solid #c6002a'
+                : '3px solid transparent',
               cursor: 'pointer',
               fontFamily: "'Lato', sans-serif",
               fontSize: '1rem',
               fontWeight: !isLogin ? 600 : 400,
               color: !isLogin ? '#c6002a' : '#666',
-              transition: 'all 0.2s'
+              transition: 'all 0.2s',
             }}
           >
             {t('register_tab')}
@@ -151,29 +167,37 @@ export default function AuthPage() {
         {/* Form Content */}
         <div style={{ padding: '2rem' }}>
           {error && (
-            <div style={{
-              padding: '0.75rem 1rem',
-              backgroundColor: '#fee',
-              color: '#c00',
-              borderRadius: '4px',
-              marginBottom: '1.5rem',
-              border: '1px solid #fcc',
-              fontSize: '0.9rem'
-            }}>
+            <div
+              data-testid="auth-error"
+              style={{
+                padding: '0.75rem 1rem',
+                backgroundColor: '#fee',
+                color: '#c00',
+                borderRadius: '4px',
+                marginBottom: '1.5rem',
+                border: '1px solid #fcc',
+                fontSize: '0.9rem',
+              }}
+            >
               {error}
             </div>
           )}
 
           {isLogin ? (
-            <form onSubmit={handleLogin} style={{ display: 'grid', gap: '1.25rem' }}>
+            <form
+              onSubmit={handleLogin}
+              style={{ display: 'grid', gap: '1.25rem' }}
+            >
               <div>
-                <label style={{
-                  display: 'block',
-                  marginBottom: '0.5rem',
-                  fontSize: '0.9rem',
-                  fontWeight: 500,
-                  color: '#333'
-                }}>
+                <label
+                  style={{
+                    display: 'block',
+                    marginBottom: '0.5rem',
+                    fontSize: '0.9rem',
+                    fontWeight: 500,
+                    color: '#333',
+                  }}
+                >
                   Email
                 </label>
                 <input
@@ -181,26 +205,30 @@ export default function AuthPage() {
                   required
                   placeholder="a.lastname@student.avans.nl"
                   value={loginForm.email}
-                  onChange={(e) => setLoginForm({ ...loginForm, email: e.target.value })}
+                  onChange={(e) =>
+                    setLoginForm({ ...loginForm, email: e.target.value })
+                  }
                   style={{
                     width: '100%',
                     padding: '0.75rem',
                     border: '1px solid #ddd',
                     borderRadius: '4px',
                     fontSize: '1rem',
-                    fontFamily: "'Lato', sans-serif"
+                    fontFamily: "'Lato', sans-serif",
                   }}
                 />
               </div>
 
               <div>
-                <label style={{
-                  display: 'block',
-                  marginBottom: '0.5rem',
-                  fontSize: '0.9rem',
-                  fontWeight: 500,
-                  color: '#333'
-                }}>
+                <label
+                  style={{
+                    display: 'block',
+                    marginBottom: '0.5rem',
+                    fontSize: '0.9rem',
+                    fontWeight: 500,
+                    color: '#333',
+                  }}
+                >
                   Wachtwoord
                 </label>
                 <input
@@ -209,14 +237,16 @@ export default function AuthPage() {
                   minLength={8}
                   placeholder="Min. 8 karakters"
                   value={loginForm.password}
-                  onChange={(e) => setLoginForm({ ...loginForm, password: e.target.value })}
+                  onChange={(e) =>
+                    setLoginForm({ ...loginForm, password: e.target.value })
+                  }
                   style={{
                     width: '100%',
                     padding: '0.75rem',
                     border: '1px solid #ddd',
                     borderRadius: '4px',
                     fontSize: '1rem',
-                    fontFamily: "'Lato', sans-serif"
+                    fontFamily: "'Lato', sans-serif",
                   }}
                 />
               </div>
@@ -235,23 +265,34 @@ export default function AuthPage() {
                   cursor: loading ? 'not-allowed' : 'pointer',
                   fontWeight: 600,
                   opacity: loading ? 0.6 : 1,
-                  marginTop: '0.5rem'
+                  marginTop: '0.5rem',
                 }}
               >
                 {loading ? t('logging_in') : t('login')}
               </button>
             </form>
           ) : (
-            <form onSubmit={handleRegister} style={{ display: 'grid', gap: '1.25rem' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <form
+              onSubmit={handleRegister}
+              style={{ display: 'grid', gap: '1.25rem' }}
+            >
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: '1rem',
+                }}
+              >
                 <div>
-                  <label style={{
-                    display: 'block',
-                    marginBottom: '0.5rem',
-                    fontSize: '0.9rem',
-                    fontWeight: 500,
-                    color: '#333'
-                  }}>
+                  <label
+                    style={{
+                      display: 'block',
+                      marginBottom: '0.5rem',
+                      fontSize: '0.9rem',
+                      fontWeight: 500,
+                      color: '#333',
+                    }}
+                  >
                     Voornaam
                   </label>
                   <input
@@ -259,25 +300,32 @@ export default function AuthPage() {
                     required
                     placeholder="Voornaam"
                     value={registerForm.firstName}
-                    onChange={(e) => setRegisterForm({ ...registerForm, firstName: e.target.value })}
+                    onChange={(e) =>
+                      setRegisterForm({
+                        ...registerForm,
+                        firstName: e.target.value,
+                      })
+                    }
                     style={{
                       width: '100%',
                       padding: '0.75rem',
                       border: '1px solid #ddd',
                       borderRadius: '4px',
                       fontSize: '1rem',
-                      fontFamily: "'Lato', sans-serif"
+                      fontFamily: "'Lato', sans-serif",
                     }}
                   />
                 </div>
                 <div>
-                  <label style={{
-                    display: 'block',
-                    marginBottom: '0.5rem',
-                    fontSize: '0.9rem',
-                    fontWeight: 500,
-                    color: '#333'
-                  }}>
+                  <label
+                    style={{
+                      display: 'block',
+                      marginBottom: '0.5rem',
+                      fontSize: '0.9rem',
+                      fontWeight: 500,
+                      color: '#333',
+                    }}
+                  >
                     Achternaam
                   </label>
                   <input
@@ -285,27 +333,34 @@ export default function AuthPage() {
                     required
                     placeholder="Achternaam"
                     value={registerForm.lastName}
-                    onChange={(e) => setRegisterForm({ ...registerForm, lastName: e.target.value })}
+                    onChange={(e) =>
+                      setRegisterForm({
+                        ...registerForm,
+                        lastName: e.target.value,
+                      })
+                    }
                     style={{
                       width: '100%',
                       padding: '0.75rem',
                       border: '1px solid #ddd',
                       borderRadius: '4px',
                       fontSize: '1rem',
-                      fontFamily: "'Lato', sans-serif"
+                      fontFamily: "'Lato', sans-serif",
                     }}
                   />
                 </div>
               </div>
 
               <div>
-                <label style={{
-                  display: 'block',
-                  marginBottom: '0.5rem',
-                  fontSize: '0.9rem',
-                  fontWeight: 500,
-                  color: '#333'
-                }}>
+                <label
+                  style={{
+                    display: 'block',
+                    marginBottom: '0.5rem',
+                    fontSize: '0.9rem',
+                    fontWeight: 500,
+                    color: '#333',
+                  }}
+                >
                   Avans Email
                 </label>
                 <input
@@ -314,33 +369,39 @@ export default function AuthPage() {
                   pattern=".*@student\.avans\.nl$"
                   placeholder="a.lastname@student.avans.nl"
                   value={registerForm.email}
-                  onChange={(e) => setRegisterForm({ ...registerForm, email: e.target.value })}
+                  onChange={(e) =>
+                    setRegisterForm({ ...registerForm, email: e.target.value })
+                  }
                   style={{
                     width: '100%',
                     padding: '0.75rem',
                     border: '1px solid #ddd',
                     borderRadius: '4px',
                     fontSize: '1rem',
-                    fontFamily: "'Lato', sans-serif"
+                    fontFamily: "'Lato', sans-serif",
                   }}
                 />
-                <p style={{
-                  margin: '0.5rem 0 0',
-                  fontSize: '0.8rem',
-                  color: '#666'
-                }}>
+                <p
+                  style={{
+                    margin: '0.5rem 0 0',
+                    fontSize: '0.8rem',
+                    color: '#666',
+                  }}
+                >
                   Gebruik je Avans student email
                 </p>
               </div>
 
               <div>
-                <label style={{
-                  display: 'block',
-                  marginBottom: '0.5rem',
-                  fontSize: '0.9rem',
-                  fontWeight: 500,
-                  color: '#333'
-                }}>
+                <label
+                  style={{
+                    display: 'block',
+                    marginBottom: '0.5rem',
+                    fontSize: '0.9rem',
+                    fontWeight: 500,
+                    color: '#333',
+                  }}
+                >
                   Wachtwoord
                 </label>
                 <input
@@ -349,14 +410,19 @@ export default function AuthPage() {
                   minLength={8}
                   placeholder="Min. 8 karakters"
                   value={registerForm.password}
-                  onChange={(e) => setRegisterForm({ ...registerForm, password: e.target.value })}
+                  onChange={(e) =>
+                    setRegisterForm({
+                      ...registerForm,
+                      password: e.target.value,
+                    })
+                  }
                   style={{
                     width: '100%',
                     padding: '0.75rem',
                     border: '1px solid #ddd',
                     borderRadius: '4px',
                     fontSize: '1rem',
-                    fontFamily: "'Lato', sans-serif"
+                    fontFamily: "'Lato', sans-serif",
                   }}
                 />
               </div>
@@ -375,7 +441,7 @@ export default function AuthPage() {
                   cursor: loading ? 'not-allowed' : 'pointer',
                   fontWeight: 600,
                   opacity: loading ? 0.6 : 1,
-                  marginTop: '0.5rem'
+                  marginTop: '0.5rem',
                 }}
               >
                 {loading ? t('registering') : t('register')}

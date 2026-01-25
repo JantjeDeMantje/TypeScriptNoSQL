@@ -65,7 +65,7 @@ export function getLocalized(text: LocalizedText | undefined, lang: 'en' | 'nl')
 }
 
 export function setLocalized(existing: LocalizedText | undefined, lang: 'en' | 'nl', value: string): LocalizedText {
-  const obj = typeof existing === 'object' && existing ? { ...existing } : {} as any;
+  const obj: { en?: string; nl?: string } = typeof existing === 'object' && existing !== null ? { ...existing } : {};
   obj[lang] = value;
   return obj;
 }
